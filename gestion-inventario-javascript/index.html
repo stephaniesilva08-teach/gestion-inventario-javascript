@@ -4,24 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js /main.js" defer></script>
 </head>
 
 <body>
     <div class="contenedor-login">
-        <h1>BIENVENIDO</h1>
-        <p>Inicia sesion para continuar</p>
+        <div class="contenedor-candado">
+            <div class="circulo">
+                <img src="images/candado.png" class="candado" alt="card">
+            </div>
+        </div>
+        <div class="sesion">
+            <h1>Bienvenido</h1>
+            <p>Inicia sesion para continuar</p>
+        </div>
 
         <h3>Username</h3>
-        <input type="text" name="name" placeholder="Ingrese su Username" />
+        <div class="campo">
+            <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" class="logines" alt="card"> <input
+                class="Username" type="text" name="name" placeholder="Ingrese su Username" />
+        </div>
         <br>
         <h3>Password</h3>
-        <input type="text" password="Password" placeholder="Ingrese su Password" />
+        <div class="campo">
+            <img src="images/ChatGPT Image 24 jun 2026, 11_47_48.png" class="logines" alt="card"> <input
+                class="password" type="text" password="Password" placeholder="Ingrese su Password" />
+        </div>
         <br>
-        <br>
-        <button id="login">LOGIN</button>
+        <button id="login">login</button>
     </div>
 
 </body>
