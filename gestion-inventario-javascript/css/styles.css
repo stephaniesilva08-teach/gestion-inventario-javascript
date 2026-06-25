@@ -1,5 +1,7 @@
 body{
-    background-color: cadetblue;
+    background-image: url(../images/fondologin3.png);
+    background-position: center;
+    background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
@@ -10,9 +12,11 @@ body{
 .contenedor-login{
     background-color: white;
     margin: 0 auto;
+    width: 20%;
     max-width: 1000px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    border: 2px solid #91d9f8;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     align-items: center;
 }
@@ -26,8 +30,9 @@ body{
     box-shadow: 0 2px 8px lightblue ;
     margin: auto;
     cursor: pointer;
-    width: 90%;
+    width: 70%;
     padding: 8px 15px;
+    justify-content: center;
 }
 
 h3{
@@ -39,6 +44,10 @@ h3{
 }
 
 .Username{
+    padding: 8px 5px;
+}
+
+.name{
     padding: 8px 5px;
 }
 
@@ -59,6 +68,8 @@ h3{
     height: 20px;
     padding-left: 5px;
     border: 1px solid #8b8ba7;
+    border-radius: 5px;
+    border-color: #00B2FF;
 }
 
 .sesion{
@@ -66,22 +77,30 @@ h3{
     text-align: center;
 }
 
+.sesion p{
+    color: gray;
+}
+
 .contenedor-candado{
-    width: 90%;
-    height: 90%; 
+    width: 100%;
+    height: 100%; 
+    margin-bottom: 10px;
     display: flex;
     justify-content: center; 
     align-items: center;
 }
 
-.circulo{
-    width: 90px;
-    height: 90px;
+.contenedor-candado img{
+    width: 40%;
+    height: 40%;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
 }
 
-.circulo img{
-    width: 100%;
+.olvidar-contraseña{
+    color: #00B2FF;
+    text-align: center;
+    cursor: pointer;
 }
+
