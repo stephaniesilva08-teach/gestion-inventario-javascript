@@ -1,27 +1,43 @@
 items = [];
 
-document.addEventListener("product-submit", (event) => {
+document.addEventListener("product.submit", (event) => {
   const item = event.detail;
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
+  console.log("Producto guardado en LocalStorage:", item);
+
 });
 
-const user = {
-  "name": "nata", 
-  "quantity": "123abc",
-  "price": "123abc"
+const URL_BASE = "https://stock-flow-3accf-default-rtdb.firebaseio.com"
+
+const boton = document.getElementById("login");
+
+boton.addEventListener("click", () => {
+
+  const producto = document.getElementById("#producto").value;
+  const precio = document.getElementById("#precio").value;
+  const stock = document.getElementById("#stock").value;
+
+  const user = {
+  "name": producto, 
+  "quantity": stock,
+  "price": precio
   }
 
-  const URL_BASE = "https://stock-flow-3accf-default-rtdb.firebaseio.com"
-
   const httpClient = fetch(`${URL_BASE}/product.json`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
   
-    body: JSON.stringify(user)
-  });
+  body: JSON.stringify(user)
   
-  const res = httpclient.then(data => data.json());
-  res.then(data => console.log).catch(err => console.error)
+  }); 
+
+    const res = httpClient.then(data => data.json());
+  res.then(data => console.log("producto guardado ",data)).catch(err => console.error("error: ", err))
+
+})
+
+
+  
