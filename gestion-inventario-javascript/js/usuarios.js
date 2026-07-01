@@ -18,19 +18,32 @@ boton.addEventListener("click", (e) => {
 
     const identificacion = document.getElementById("identificacion").value;
     const contraseña = document.getElementById("password").value;
+    const nombre = document.getElementById("username").value;
+    const cargo = document.getElementById("cargo").value;
+    const confirmacion = document.getElementById("confirmarPassword").value;
+    const mensaje = document.getElementById("mensajeError");
 
-    const login = {
+    if (contraseña !== confirmacion) {
+        mensaje.textContent = "Las contraseñas no coinciden.";
+        return;
+    }
+    
+    mensaje.textContent = "";
+
+    const usuario = {
         "identificacion": identificacion,
         "password": contraseña,
+        "name": nombre,
+        "cargo": cargo,
     }
 
-    const httpClient = fetch(`${URL_BASE}/login.json`, {
+    const httpClient = fetch(`${URL_BASE}/usuarios.json`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
 
-        body: JSON.stringify(login)
+        body: JSON.stringify(usuario)
 
     });
 

@@ -6,39 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js /main.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <div class="contenedor-login">
+    <div class="contenedor-login1">
         <div class="contenedor-candado">
-                <img src="images/circulocandado.png" alt="card">
+            <img src="images/circulocandado.png" alt="card">
         </div>
         <div class="sesion">
-            <h1>Bienvenido</h1>
-            <p>Registre su usuario para continuar</p>
+            <h1>Iniciar Sesion</h1>
+            <p>Ingrese sus datos para continuar</p>
+    <form>
         </div>
-
-        <h3>Username</h3>
-        <div class="campo">
+        <h3>Numero de Identificacion</h3>
+        <div class="campo1">
             <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" class="logines" alt="card"> <input
-                class="Username" type="text" username="username" placeholder="Ingrese su Username" />
+                class="Username" type="text" id="identificacion" placeholder="Ingrese su Numero de Identificacion" />
         </div>
-        <br>
-        <h3>Password</h3>
-        <div class="campo">
+        <h3>Contraseña</h3>
+        <div class="campo1">
             <img src="images/ChatGPT Image 24 jun 2026, 11_47_48.png" class="logines" alt="card"> <input
-                class="password" type="text" password="Password" placeholder="Ingrese su Password" />
+                class="password" type="password" id="password" placeholder="Ingrese su Password" />
         </div>
         <br>
-        <h3>Name</h3>
-        <div class="campo">
-            <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" class="logines" alt="card"> <input
-                class="name" type="text" name="name" placeholder="Ingrese su Name" />
-        </div>
-        <br>
-        <button id="login">Registrarme</button>
+        <button id="login">Ingresar</button>
         <p class="olvidar-contraseña">Olvidaste tu contraseña?</p>
+    </form>
     </div>
 
 </body>
