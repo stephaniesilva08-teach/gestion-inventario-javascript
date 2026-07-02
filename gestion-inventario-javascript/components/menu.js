@@ -1,31 +1,35 @@
-class menuLateral extends HTMLElement {
+class MenuLateral extends HTMLElement {
 
     connectedCallback() {
 
         this.innerHTML = `
 
-    <aside class="menu">
+        <aside class="menuu">
+            <div class="logou">
+                <h2>ACME</h2>
+                <p>Sistema Producción</p>
+            </div>
 
-    <h2 class="titulo">ACME</h2>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="inventario.html">Inventario</a>
+                    </li>
+                    <li>
+                        <a href="produccion.html"> Producción</a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html"> Usuarios</a>
+                    </li>
+                    <li>
+                        <a href="productos.html">Productos</a>
+                    </li>
 
-        <ul>
-
-            <li><a href="">Usuarios</a></li>
-
-            <li><a href="">Productos</a></li>
-
-            <li><a href="">Inventario</a></li>
-
-            <li><a href="">Producción</a></li>
-
-        </ul>
-
-    </aside>
-
-`;
-
+                </ul>
+            </nav>
+        </aside>
+        `;
     }
-
 }
 
-customElements.define("menu-lateral", menuLateral);
+customElements.define("menu-lateral", MenuLateral);

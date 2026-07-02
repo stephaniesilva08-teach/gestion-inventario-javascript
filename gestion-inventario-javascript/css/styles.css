@@ -151,3 +151,154 @@ h3{
     font-size: 14px;
     margin-top: 5px;
 }
+
+.menuu{
+    width:240px;
+    height:100vh;
+    background:#dff4ff;
+    border-right:2px solid #91d9f8;
+    position:fixed;
+    left:0;
+    top:0;
+
+}
+
+.logou{
+    text-align:center;
+    padding:30px 20px;
+    border-bottom:2px solid #91d9f8;
+
+}
+
+.logou h2{
+    margin:0;
+    color:#0099ff;
+
+}
+
+.logou p{
+    color:gray;
+    font-size:14px;
+
+}
+
+.menuu ul{
+    list-style:none;
+    padding:0;
+    margin-top:30px;
+
+}
+
+.menuu li{
+    margin:10px;
+
+}
+
+.menuu a{
+    display:block;
+    text-decoration:none;
+    color:#333;
+    padding:15px;
+    border-radius:10px;
+    transition:.3s;
+
+}
+
+.menuu a:hover{
+    background:#00B2FF;
+    color:white;
+
+}
+
+.boton {
+    margin-top: 1rem;
+    margin-right: 10px;
+    padding: 1rem 1.5rem;
+    background-color: white;
+    border: 3px solid #91d9f8;
+    color: #008fd1;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #91d9f8;
+    color: white;
+    transform: scale(1.05);
+}
+
+.titulo{
+    color: #008fd1;
+    margin-bottom: 20px;
+}
+
+.contenidot{
+    margin-left:250px;
+    padding:35px;
+}
+
+.titulo{
+    color: #008fd1;
+    margin-bottom: 20px;
+}
+
+.accionest{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+#buscar{
+    margin-top: 1rem;
+    margin-right: 10px;
+    padding: 1rem 1.5rem;
+    width: 200px;
+    padding: 10px;
+    border: 3px solid #91d9f8;
+    border-radius: 8px;
+}
+
+.accionest input,
+.accionest .boton{
+    flex: 1;          
+    height: 50px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.contenedor-tablat{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#dff4ff;
+}
+
+th{
+    padding:18px;
+    color:#008fd1;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ececec;
+}
+
+tbody tr:hover{
+    background:#f2fbff;
+}
+
