@@ -314,3 +314,12 @@ tbody tr:hover{
     background:#f2fbff;
 }
 
+.estado{
+    background: #e6f7ff;
+    color: green;
+    border: 1px solid green;
+    border-radius: 18px;
+    padding: 6px 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
