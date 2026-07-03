@@ -152,6 +152,18 @@ h3{
     margin-top: 5px;
 }
 
+#mensajeexito{
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#mensaje{
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 .menuu{
     width:240px;
     height:100vh;

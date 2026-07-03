@@ -10,7 +10,7 @@ class TablaUsuarios extends HTMLElement {
                         type="text"
                         id="buscar"
                         placeholder="Buscar usuario">
-                        <a class="boton" href="registro-usuario.html">+ Nuevo Usuario</a>
+                        <a class="boton" href="../registro-usuario.html" >+ Nuevo Usuario</a>
                 </div>
 
             <div class="contenedor-tablat">

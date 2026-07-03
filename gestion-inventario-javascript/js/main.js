@@ -1,4 +1,4 @@
-items = [];
+let items = JSON.parse(localStorage.getItem("items")) || [];
 
 document.addEventListener("product.submit", (event) => {
     const item = event.detail;
@@ -18,23 +18,39 @@ boton.addEventListener("click", (e) => {
 
     const identificacion = document.getElementById("identificacion").value;
     const contraseña = document.getElementById("password").value;
+    const mensaje = document.getElementById("mensaje");
 
-    const login = {
-        "identificacion": identificacion,
-        "password": contraseña,
+    if (!identificacion || !contraseña) {
+        mensaje.textContent = "Por favor, llena todos los campos.";
+        return;
     }
 
-    const httpClient = fetch(`${URL_BASE}/login.json`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+    fetch(`${URL_BASE}/usuarios.json`)
+        .then(res => res.json())
+        .then(data => {
+            const usuarios = Object.values(data || {});
+            const usuariovalido = usuarios.some(user => 
+                String(user.identificacion) === identificacion &&
+                String(user.password) === contraseña
+            );
 
-        body: JSON.stringify(login)
+            if (usuariovalido) {
+                mensaje.textContent = "Iniciaste Sesion";
+                mensaje.style.color = "green";
+                setTimeout(() => {
+                    window.location.href = "../usuarios.html";
+                }, 1000);
 
-    });
+            } else {
+                mensaje.textContent = "Datos no validos"
+                mensaje.style.color = "red"; 
 
-    const res = httpClient.then(data => data.json());
-    res.then(data => console.log("producto guardado ", data)).catch(err => console.error("error: ", err))
-
-})
+                document.getElementById("identificacion").value = "";
+                document.getElementById("password").value = ""; 
+            }
+        })
+        .catch(err => {
+            console.error("Error: ", err)
+            mensaje.textContent = "Error no ingresado a la base de datos.";
+        });
+});

@@ -22,9 +22,18 @@ boton.addEventListener("click", (e) => {
     const cargo = document.getElementById("cargo").value;
     const confirmacion = document.getElementById("confirmarPassword").value;
     const mensaje = document.getElementById("mensajeError");
+    const mensajeExito = document.getElementById("mensajeexito");
+
+    if (!identificacion || !contraseña) {
+        mensaje.textContent = "Por favor, llena todos los campos.";
+        return;
+    }
 
     if (contraseña !== confirmacion) {
         mensaje.textContent = "Las contraseñas no coinciden.";
+
+        document.getElementById("password").value = ""; 
+        document.getElementById("confirmarPassword").value = ""; 
         return;
     }
     
@@ -45,9 +54,20 @@ boton.addEventListener("click", (e) => {
 
         body: JSON.stringify(usuario)
 
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("usuario guardado: ", data);
+
+        mensajeExito.textContent = "Usuario registrado";
+        setTimeout(() => {
+            window.location.href = "../index.html";
+        }, 1000);
+
+    })
+    .catch(err => {
+        console.error("Error: ", err)
+        mensaje.textContent = "Error al registrar usuario.";
     });
 
-    const res = httpClient.then(data => data.json());
-    res.then(data => console.log("producto guardado ", data)).catch(err => console.error("error: ", err))
-
-})
+});
