@@ -100,6 +100,6 @@ class TablaUsuarios extends HTMLElement {
         
     }
 }
+
  
 customElements.define("tabla-usuarios", TablaUsuarios);
-
