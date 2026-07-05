@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Producto</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/registro-producto.js" defer></script>
+    <script src="js/inventario.js" defer></script>
     <script src="components/menu.js" defer></script>
 </head>
 
@@ -18,30 +18,40 @@
         <div class="sesion">
             <h1>Bienvenido</h1>
             <p>Registre su producto para continuar</p>
-            <form>
+            <p id="mensajeexito"></p>
+            <p id="mensajeError"></p>
         </div>
-        <br>
-        <h3>Codigo del producto</h3>
-        <div class="campo">
-            <input class="name" id="codigo" type="text" id="stock" placeholder="Ingrese codigo del producto"/>
-        </div>
-        <h3>Nombre del producto</h3>
-        <div class="campo">
-            <input class="Username" id="name" type="text" id="producto" placeholder="Ingrese nombre del producto" />
-        </div>
-        <h3>Proveedor del producto</h3>
-        <div class="campo">
-            <input class="password" id="proveedor" type="text" id="precio"
-                placeholder="Ingrese proveedor del producto" />
-        </div>
-        <h3>Tipo de producto</h3>
-        <div class="campo">
-            <input class="materia" name="tipo" value="Materia Prima">
-        </div>
+        <form id="formulario-producto">
+            <br>
+            <h3>Código del producto</h3>
+            <div class="campo">
+                <input class="name" id="codigo" type="text" placeholder="Ingrese código del producto"/>
+            </div>
+            <h3>Nombre del producto</h3>
+            <div class="campo">
+                <input class="Username" id="name" type="text" placeholder="Ingrese nombre del producto" />
+            </div>
+            <h3>Proveedor del producto</h3>
+            <div class="campo">
+                <input class="password" id="proveedor" type="text" placeholder="Ingrese proveedor del producto" />
+            </div>
+            <h3>Stock del producto</h3>
+            <div class="campo">
+                <input class="name" id="stock" type="text" placeholder="Ingrese stock del producto"/>
+            </div>
+            <h3>Tipo de producto</h3>
+            <div class="campo">
+                <select class="materia" id="tipo" name="tipo">
+                    <option value="seleccione">Seleccione</option>
+                    <option value="materia_prima">Materia Prima</option>
+                    <option value="producto_terminado">Producto Terminado</option>
+                </select>
+            </div>
+            <br>
+            <button id="login" type="submit">Registrar producto</button>
         </form>
-        <br>
-        <button id="login">Registrar producto</button>
     </div>
 </body>
+
 
 </html>

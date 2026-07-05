@@ -38,7 +38,7 @@ boton.addEventListener("click", (e) => {
                 mensaje.textContent = "Iniciaste Sesion";
                 mensaje.style.color = "green";
                 setTimeout(() => {
-                    window.location.href = "../usuarios.html";
+                    window.location.href = "../inicio.html";
                 }, 1000);
 
             } else {

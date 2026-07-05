@@ -323,3 +323,105 @@ tbody tr:hover{
     font-weight: bold;
     font-size: 13px;
 }
+
+.btn-eliminar{
+    background: #e6f7ff;
+    color: red;
+    border: 1px solid red;
+    border-radius: 18px;
+    padding: 6px 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.btn-editar{
+    background: #e6f7ff;
+    color: green;
+    border: 1px solid green;
+    border-radius: 18px;
+    padding: 6px 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#mensaje-tabla {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999; 
+    background-color: #e8f8f5; 
+    color: green;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border-left: 5px solid #2ecc71;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+#mensaje-tabla::before,
+#mensaje-tabla::after {
+    display: none !important;
+    content: none !important;
+}
+
+#mensaje-tabla:empty {
+    display: none !important;
+}
+
+.bienvenida{
+    position: absolute;
+    top: 50%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 40px;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    text-align: center;
+    border: 1px solid rgba(30,136,229,.2);
+}
+
+.bienvenida h1{
+    font-size: 48px;
+    color: #1e88e5;
+    margin-bottom: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.bienvenida h2{
+    font-size: 28px;
+    color: #1565c0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.bienvenida p{
+    font-size: 18px;
+    color: #4d6475;
+    line-height: 1.7;
+}
+
+#id{
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 4px; 
+    border: 1px solid #00B2FF; 
+    font-size: 16px;
+}
+
+.btn-incrementar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}

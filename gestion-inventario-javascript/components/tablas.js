@@ -1,105 +1,124 @@
 class TablaUsuarios extends HTMLElement {
+    constructor() {
+        super();
+        this._datos = [];
+        this._columnas = [];
+        this._config = { titulo: "Tabla", textoBoton: "+ Nuevo", urlBoton: "#" };
+    }
 
-    connectedCallback() {
+    configurar(configuracion, columnas) {
+        this._config = configuracion;
+        this._columnas = columnas;
+        this.renderBase();
+    }
+
+    set datos(nuevosDatos) {
+        this._datos = nuevosDatos;
+        if (this.querySelector("#cuerpoTablaDinamica")) {
+            this.renderCuerpo();
+        } else {
+            this.renderBase();
+        }
+    }
+
+    renderBase() {
         this.innerHTML = `
         <main class="contenidot">
-                <h1 class="titulo">Gestión de Usuarios</h1>
-                <div class="accionest">
-                    <input
-                        type="text"
-                        id="buscar"
-                        placeholder="Buscar usuario">
-                        <a class="boton" href="../registro-usuario.html" >+ Nuevo Usuario</a>
-                </div>
-            <p id="mensaje-tabla"></p>
+            <h1 class="titulo">${this._config.titulo}</h1>
+            <div class="accionest">
+                <input type="text" id="buscar" placeholder="Buscar...">
+                <a class="boton" id="btn-nuevo-dinamico" href="${this._config.urlBoton}">${this._config.textoBoton}</a>
+            </div>
+            <p id="mensaje-tabla" style="min-height: 20px; transition: all 0.3s ease; margin: 10px 0; font-weight: bold; font-size: 14px; text-align: left;"></p>
             <div class="contenedor-tablat">
                 <table>
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
+                        <tr id="cabeceraTablaDinamica"></tr>
                     </thead>
-                    <tbody id="listaUsuariost">
-            
-                    </tbody>
+                    <tbody id="cuerpoTablaDinamica"></tbody>
                 </table>
             </div>
         </main>
         `;
 
-        this.cargarUsuarios();
+        const trCabecera = this.querySelector("#cabeceraTablaDinamica");
+        trCabecera.innerHTML = this._columnas.map(col => `<th>${col.label}</th>`).join("") + `<th>Acciones</th>`;
+
+        this.renderCuerpo();
         this.configurarBuscador();
     }
 
-    async cargarUsuarios() {
-        const tbody = this.querySelector(`#listaUsuariost`);
+    renderCuerpo() {
+        const tbody = this.querySelector("#cuerpoTablaDinamica");
+        if (!tbody) return;
 
-        try {
+        tbody.innerHTML = "";
 
-            const respuesta = await fetch(`https://stock-flow-3accf-default-rtdb.firebaseio.com/usuarios.json`);
-            const datos = await respuesta.json();
+        if (this._datos.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="${this._columnas.length + 1}" style="text-align:center;">No hay registros</td></tr>`;
+            return;
+        }
 
-            tbody.innerHTML = ``;
+        this._datos.forEach((item) => {
+            const fila = document.createElement("tr");
 
-            if (!datos) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No hay usuarios registrados</td></tr>`;
-                return;
+            const celdasHTML = this._columnas.map(col => {
+                if (col.key === "tipo") {
+                    return `<td>${item[col.key] === 'materia_prima' ? 'Materia Prima' : 'Producto Terminado'}</td>`;
+                }
+                return `<td>${item[col.key] || ''}</td>`;
+            }).join("");
+            const botonStockHTML = item.hasOwnProperty('stock') 
+                ? `<button class="incrementar btn-incrementar">+ Stock</button>` 
+                : '';
+
+            fila.innerHTML = ` 
+                ${celdasHTML}
+                <td>
+                    ${botonStockHTML}
+                    <button class="editar btn-editar">Editar</button>
+                    <button class="eliminar btn-eliminar">Eliminar</button>
+                </td>
+            `; 
+
+            fila.querySelector(".eliminar").addEventListener("click", () => {
+                this.dispatchEvent(new CustomEvent("eliminar-item", { bubbles: true, detail: item }));
+            });
+
+            fila.querySelector(".editar").addEventListener("click", () => {
+                this.dispatchEvent(new CustomEvent("editar-item", { bubbles: true, detail: item }));
+            });
+
+            const btnStock = fila.querySelector(".incrementar");
+            if (btnStock) {
+                btnStock.addEventListener("click", () => {
+                    this.dispatchEvent(new CustomEvent("aumentar-stock", { bubbles: true, detail: item }));
+                });
             }
 
-            Object.keys(datos).forEach(idFirebase => {
-                const usuario = datos[idFirebase];
-                const fila = document.createElement(`tr`);
-                const estadoAutomatico = "ACTIVO";
+            tbody.appendChild(fila);
+        });
+    }
 
-                fila.innerHTML = ` 
-                <td>${usuario.identificacion || ''}</td>
-                <td>${usuario.name || ''}</td>
-                <td>${usuario.cargo || ''}</td>
-                <td>
-                    <span class="estado ${estadoAutomatico.toLowerCase()}">
-                    ${estadoAutomatico}
-                    </span>
-                </td>
-                <td>
-                    <button class="editar">Editar</button>
-                    <button class="eliminar">Eliminar</button>
-                </td>
-                `; 
-                
-                tbody.appendChild(fila);
-            }); 
-
-        } catch (error) { 
-            console.error("Error al cargar usuarios:", error);
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red;">Error de conexión</td></tr>`;
-        }
-    } 
-
-        configurarBuscador() {
+    configurarBuscador() {
         const Buscar = this.querySelector('#buscar');
+        if (!Buscar) return;
         
         Buscar.addEventListener('input', () => {
-            const textoBusqueda = Buscar.value.toLowerCase()
-            const filas = this.querySelectorAll('#listaUsuariost tr');
+            const textoBusqueda = Buscar.value.toLowerCase();
+            const filas = this.querySelectorAll('#cuerpoTablaDinamica tr');
 
             filas.forEach(fila => {
                 const primeraCelda = fila.querySelector('td'); 
                 const celdaID = primeraCelda ? primeraCelda.textContent.toLowerCase() : '';
-
-                if (celdaID.includes(textoBusqueda)) {
-                    fila.style.display = '';
-                } else {
-                    fila.style.display = 'none';
-                }
+                fila.style.display = celdaID.includes(textoBusqueda) ? '' : 'none';
             });
         });
-        
     }
+    
 }
 
- 
 customElements.define("tabla-usuarios", TablaUsuarios);
+
+
+

@@ -13,16 +13,16 @@ class MenuLateral extends HTMLElement {
             <nav>
                 <ul>
                     <li>
-                        <a href="inventario.html">Inventario</a>
-                    </li>
-                    <li>
-                        <a href="produccion.html"> Producción</a>
+                        <a href="inicio.html">Inicio</a>
                     </li>
                     <li>
                         <a href="usuarios.html"> Usuarios</a>
                     </li>
                     <li>
-                        <a href="productos.html">Productos</a>
+                        <a href="inventario.html">Inventario</a>
+                    </li>
+                    <li>
+                        <a href="produccion.html"> Producción</a>
                     </li>
 
                 </ul>

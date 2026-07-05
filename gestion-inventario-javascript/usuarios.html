@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="components/menu.js" defer></script>
     <script src="components/tablas.js" defer></script>
+    <script src="js/usuarios.js" defer></script>
 </head>
 
 <body>
     <menu-lateral></menu-lateral>
-    <tabla-usuarios></tabla-usuarios>
+    <div class="contenedor-vista-usuarios">
+        <p id="mensaje-tabla"></p>
+        <tabla-usuarios></tabla-usuarios>
+    </div>
 </body>
-
 </html>
