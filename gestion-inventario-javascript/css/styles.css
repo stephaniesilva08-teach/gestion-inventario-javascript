@@ -436,3 +436,172 @@ tbody tr:hover{
     background:#28a745; 
     color:white;
 }
+
+@media (max-width: 760px) {
+
+    body{
+        padding: 20px;
+        display: block;
+    }
+    .contenedor-login,
+    .contenedor-login1{
+        width: 85%;
+        max-width: none;
+        margin: 30px auto;
+    }
+    .menuu{
+        width: 200px;
+    }
+    .contenidot{
+        margin-left: 200px;
+        padding: 20px;
+    }
+    .accionest{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .accionest input,
+    .accionest .boton{
+        width: 100%;
+    }
+    .boton{
+        width: 100%;
+        margin-right: 0;
+    }
+    #buscar{
+        width: 100%;
+        margin-right: 0;
+    }
+    .bienvenida{
+        position: static;
+        transform: none;
+        width: auto;
+        margin-left: 200px;
+        margin-right: 20px;
+        margin-top: 40px;
+        padding: 30px;
+    }
+    .bienvenida h1{
+        font-size: 36px;
+    }
+    .bienvenida h2{
+        font-size: 24px;
+    }
+    .bienvenida p{
+        font-size: 16px;
+    }
+    table{
+        font-size: 14px;
+    }
+    th,
+    td{
+        padding: 10px;
+    }
+    .btn-editar,
+    .btn-eliminar,
+    .btn-incrementar{
+        margin: 3px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 480px){
+
+    body{
+        display: block;
+        padding: 15px;
+    }
+    .menuu{
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 2px solid #91d9f8;
+    }
+    .menuu ul{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px;
+    }
+    .menuu li{
+        margin: 0;
+    }
+    .menuu a{
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+    .contenidot{
+        margin-left: 0;
+        padding: 15px;
+    }
+    .contenedor-login,
+    .contenedor-login1{
+        width: 95%;
+        max-width: none;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .campo,
+    .campo1{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .campo img,
+    .campo1 img{
+        display: none;
+    }
+    .campo input,
+    .campo1 input,
+    select{
+        width: 100%;
+    }
+    #login{
+        width: 100%;
+    }
+    .accionest{
+        flex-direction: column;
+        gap: 10px;
+    }
+    #buscar,
+    .boton{
+        width: 100%;
+        margin: 0;
+    }
+    .bienvenida{
+        position: static;
+        transform: none;
+        width: auto;
+        margin: 20px 0;
+        padding: 20px;
+    }
+    .bienvenida h1{
+        font-size: 28px;
+    }
+    .bienvenida h2{
+        font-size: 20px;
+    }
+    .bienvenida p{
+        font-size: 15px;
+    }
+    .contenedor-tablat{
+        overflow-x: auto;
+    }
+    table{
+        min-width: 700px;
+    }
+    #mensaje-tabla{
+        width: 90%;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: 10px;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+}
