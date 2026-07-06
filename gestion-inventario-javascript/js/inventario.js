@@ -1,8 +1,7 @@
 const URL_BASE = "https://stock-flow-3accf-default-rtdb.firebaseio.com";
 let items = [];
-let productosLista = []; // Tu arreglo global de control para el inventario
+let productosLista = []; 
 
-// --- EVENTO DE PRODUCT SUBMIT (Mantenido igual) ---
 document.addEventListener("product.submit", (event) => {
     const item = event.detail;
     items.push(item);
@@ -10,13 +9,11 @@ document.addEventListener("product.submit", (event) => {
     console.log("Producto guardado en LocalStorage:", item);
 });
 
-// --- CAPTURA DE ELEMENTOS DEL FORMULARIO ---
 const boton = document.getElementById("login"); 
 let idItemEnEdicion = localStorage.getItem("idItemEnEdicion");
 
-// --- FORMULARIO DE REGISTRO / EDICIÓN ---
 if (boton) {
-    // Si existe una edición en marcha, auto-rellenamos los campos del formulario
+   
     if (idItemEnEdicion) {
         const itemAEditar = JSON.parse(localStorage.getItem("itemAEditar"));
         
@@ -36,11 +33,10 @@ if (boton) {
     boton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        // 1. Capturar los valores de texto limpiando espacios vacíos
         const inputCodigo = document.getElementById("codigo");
         const inputNombre = document.getElementById("name");
         const inputProveedor = document.getElementById("proveedor");
-        const inputStock = document.getElementById("stock"); // Referencia directa al input corregido en HTML
+        const inputStock = document.getElementById("stock"); 
 
         const codigo = inputCodigo ? inputCodigo.value.trim() : "";
         const nombre = inputNombre ? inputNombre.value.trim() : "";
@@ -48,18 +44,16 @@ if (boton) {
         
         const selectTipo = document.getElementById("tipo");
         const tipo = selectTipo ? selectTipo.value : "materia_prima";
-        
-        // 2. LEER LA CANTIDAD INGRESADA EN TIEMPO REAL
+
         let stockLeido = inputStock ? parseFloat(inputStock.value) : 0;
         if (isNaN(stockLeido)) stockLeido = 0;
 
         const mensaje = document.getElementById("mensajeError");
         const mensajeExito = document.getElementById("mensajeexito");
 
-        // Validación estricta de campos vacíos o selección inválida
         if (codigo === "" || nombre === "" || proveedor === "" || tipo === "seleccione") {
             if (mensaje) {
-                mensaje.textContent = "Por favor, llena todos los campos correctamente.";
+                mensaje.textContent = "Por favor, llena todos los campos.";
                 setTimeout(() => { mensaje.textContent = ""; }, 2000);
             }
             return;
@@ -67,11 +61,9 @@ if (boton) {
 
         if (mensaje) mensaje.textContent = "";
 
-        // 3. DETERMINAR EL STOCK FINAL REAL
-        let stockFinal = stockLeido; // Por defecto usa el valor ingresado en el formulario
+        let stockFinal = stockLeido; 
 
         if (idItemEnEdicion) {
-            // Si estamos editando, ignoramos el input de stock y mantenemos el saldo acumulado real que ya tenía en Firebase
             const itemOriginal = JSON.parse(localStorage.getItem("itemAEditar"));
             stockFinal = itemOriginal && itemOriginal.stock !== undefined ? parseFloat(itemOriginal.stock) : stockLeido;
         }
@@ -81,8 +73,14 @@ if (boton) {
             "nombre": nombre,
             "proveedor": proveedor,
             "tipo": tipo, 
-            "stock": stockFinal // Asegura que viaje como un número real (ej: 5, 12, etc.)
+            "stock": stockFinal 
         };
+
+        if (tipo === "producto_terminado") {
+        localStorage.setItem("producto_temporal_receta", JSON.stringify(productos));
+        window.location.href = "receta.html";
+            return; 
+        }
 
         let urlDestino = `${URL_BASE}/productos.json`;
         let metodoHttp = "POST";
@@ -99,9 +97,7 @@ if (boton) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log("Producto procesado con éxito:", data);
-            
-            // Limpiar estados de edición al terminar con éxito
+            console.log("Producto procesado:", data);
             localStorage.removeItem("idItemEnEdicion");
             localStorage.removeItem("itemAEditar");
 
@@ -124,12 +120,10 @@ if (boton) {
     });
 }
 
-// --- LOGICA DE INTEGRACIÓN CON TU TABLA COMPONENTE ---
 const tablaProductos = document.querySelector("tabla-usuarios");
 const mensajeTabla = document.getElementById("mensaje-tabla");
 
 if (tablaProductos) {
-    // 1. Enviamos los parámetros de cabeceras requeridos por el componente genérico
     const configuracion = {
         titulo: "Gestión de Inventario",
         textoBoton: "+ Nuevo Producto",
@@ -146,7 +140,6 @@ if (tablaProductos) {
 
     tablaProductos.configurar(configuracion, columnas);
 
-    // 2. Descarga de datos apuntando a productos.json
     async function cargarProductos() {
         try {
             const respuesta = await fetch(`${URL_BASE}/productos.json`);
@@ -157,8 +150,6 @@ if (tablaProductos) {
                 tablaProductos.datos = [];
                 return;
             }
-
-            // Mapeamos los elementos extrayendo el stock numérico real de Firebase
             productosLista = Object.keys(datos).map(idFirebase => ({
                 idFirebase: idFirebase,
                 codigo: datos[idFirebase].codigo || "S/C",
@@ -168,7 +159,6 @@ if (tablaProductos) {
                 stock: datos[idFirebase].stock !== undefined ? parseFloat(datos[idFirebase].stock) : 0
             }));
 
-            // ASIGNACIÓN CRÍTICA: Enviamos el arreglo completo al componente para que dibuje las filas
             tablaProductos.datos = productosLista;
 
         } catch (error) {
@@ -176,21 +166,19 @@ if (tablaProductos) {
         }
     }
 
-    // 3. Escuchamos las acciones genéricas emitidas desde las filas del componente
     tablaProductos.addEventListener("eliminar-item", async (event) => {
         const productoAEliminar = event.detail;
-        if (confirm(`¿Estás seguro de eliminar el producto ${productoAEliminar.nombre}?`)) {
+        if (confirm(`¿Estás seguro de eliminar el producto?`)) {
             try {
                 await fetch(`${URL_BASE}/productos/${productoAEliminar.idFirebase}.json`, { method: "DELETE" });
-                
-                // ¡AGREGAMOS EL MENSAJE EN PANTALLA AQUÍ!
+
                 if (mensajeTabla) {
-                    mensajeTabla.style.color = "green"; // Opcional: Rojo para eliminación
+                    mensajeTabla.style.color = "green";
                     mensajeTabla.textContent = `Producto "${productoAEliminar.nombre}" eliminado.`;
                     setTimeout(() => { mensajeTabla.textContent = ""; }, 2000);
                 }
 
-                cargarProductos(); // Refresca las filas de la tabla
+                cargarProductos();
             } catch (error) {
                 console.error("Error al eliminar producto:", error);
             }
@@ -209,14 +197,12 @@ if (tablaProductos) {
 
     tablaProductos.addEventListener("aumentar-stock", async (event) => {
         const productoSeleccionado = event.detail;
-        
-        // Ventana prompt nativa para recolectar las existencias a sumar sobre el saldo de Firebase
-        const cantidadIngresada = prompt(`Ingrese la cantidad de stock: ${productoSeleccionado.nombre}`);
+        const cantidadIngresada = prompt(`Ingrese la cantidad de stock:`);
         if (cantidadIngresada === null) return; 
         
         const cantidadUnidades = parseFloat(cantidadIngresada);
         if (isNaN(cantidadUnidades) || cantidadUnidades <= 0) {
-            alert("Por favor, ingrese una cantidad numérica válida.");
+            alert("Por favor, ingrese una cantidad válida.");
             return;
         }
 
@@ -230,11 +216,11 @@ if (tablaProductos) {
             });
 
             if (mensajeTabla) {
-                mensajeTabla.textContent = `Stock de "${productoSeleccionado.nombre}" incrementado con éxito a ${nuevoStockCalculado}.`;
+                mensajeTabla.textContent = `Stock incrementado.`;
                 setTimeout(() => { mensajeTabla.textContent = ""; }, 2000); 
             }
 
-            cargarProductos(); // Refrescamos la UI con los nuevos saldos
+            cargarProductos(); 
 
         } catch (error) {
             console.error("Error al actualizar el stock:", error);

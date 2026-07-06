@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produccion</title>
+    <title>Módulo de Producción</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="components/menu.js" defer></script>
+    <script src="components/menu.js"></script>
     <script src="js/produccion.js" defer></script>
 </head>
 <body>
     <menu-lateral></menu-lateral>
+    <div class="contenedor-login">
+        <div class="sesion">
+            <h1>Proceso de Producción</h1>
+            <p id="mensajeError"></p>
+            <p id="mensajeexito"></p>
+        </div>
+        <p id="mensajeError"></p>
+        <p id="mensajeexito"></p>
+
+        <form id="form-prod">
+            <div class="campo">
+                <h3>Producto a Fabricar</h3>
+                <select id="select-prod">
+                    <option value="">Seleccione Producto Terminado...</option>
+                </select>
+            </div>
+            <br>
+            <div class="campo">
+                <h3>Cantidad a Producir</h3>
+                <input type="number" id="cant-fabricar" placeholder="Cantidad de unidades" min="1"/>
+            </div>
+            <br>
+            <button type="submit" id="login">Fabricar / Procesar</button>
+        </form>
+    </div>
 </body>
 </html>

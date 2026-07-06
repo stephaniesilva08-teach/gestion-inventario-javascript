@@ -29,7 +29,7 @@ class TablaUsuarios extends HTMLElement {
                 <input type="text" id="buscar" placeholder="Buscar...">
                 <a class="boton" id="btn-nuevo-dinamico" href="${this._config.urlBoton}">${this._config.textoBoton}</a>
             </div>
-            <p id="mensaje-tabla" style="min-height: 20px; transition: all 0.3s ease; margin: 10px 0; font-weight: bold; font-size: 14px; text-align: left;"></p>
+            <p id="mensaje-tabla"></p>
             <div class="contenedor-tablat">
                 <table>
                     <thead>
@@ -55,7 +55,7 @@ class TablaUsuarios extends HTMLElement {
         tbody.innerHTML = "";
 
         if (this._datos.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="${this._columnas.length + 1}" style="text-align:center;">No hay registros</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="${this._columnas.length + 1}">No hay registros</td></tr>`;
             return;
         }
 

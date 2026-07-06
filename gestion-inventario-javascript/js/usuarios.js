@@ -81,7 +81,7 @@ if (boton) {
             localStorage.removeItem("idUsuarioEnEdicion");
             localStorage.removeItem("usuarioAEditar");
 
-            setTimeout(() => { window.location.href = "../index.html"; }, 1000);
+            setTimeout(() => { window.location.href = "../login.html"; }, 1000);
         })
         .catch(err => {
             console.error("Error: ", err);
@@ -147,7 +147,7 @@ if (tablaComponente) {
     const configuracionUsuarios = {
         titulo: "Gestión de Usuarios",
         textoBoton: "+ Nuevo Usuario",
-        urlBoton: "../registro-usuario.html"
+        urlBoton: "../index.html"
     };
 
     const columnasUsuarios = [
@@ -168,7 +168,7 @@ if (tablaComponente) {
         const usuarioAEditar = event.detail;
         localStorage.setItem("idUsuarioEnEdicion", usuarioAEditar.idFirebase);
         localStorage.setItem("usuarioAEditar", JSON.stringify(usuarioAEditar));
-        window.location.href = "../registro-usuario.html";
+        window.location.href = "../index.html";
     });
 
     cargarUsuarios();

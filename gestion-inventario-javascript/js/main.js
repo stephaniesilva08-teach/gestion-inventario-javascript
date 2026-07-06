@@ -9,7 +9,6 @@ document.addEventListener("product.submit", (event) => {
 });
 
 const URL_BASE = "https://stock-flow-3accf-default-rtdb.firebaseio.com"
-
 const boton = document.getElementById("login");
 
 boton.addEventListener("click", (e) => {

@@ -425,3 +425,14 @@ tbody tr:hover{
     font-weight: bold;
     margin-right: 5px;
 }
+
+.error-texto {
+    color: #ff3333;
+    font-size: 14px;
+    text-align: center;
+}
+
+#btn-add{
+    background:#28a745; 
+    color:white;
+}
