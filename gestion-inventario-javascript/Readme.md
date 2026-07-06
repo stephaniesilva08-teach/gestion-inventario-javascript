@@ -4,25 +4,25 @@ Sistema web desarrollado en HTML, CSS y JavaScript, utilizando Firebase Realtime
 
 Tabla de contenido
 
--Descripción general
+- Descripción general
 
--Tecnologías utilizadas
+- Tecnologías utilizadas
 
--Estructura del proyecto
+- Estructura del proyecto
 
--Instrucciones de ejecución
+- Instrucciones de ejecución
 
--Módulos del sistema
+- Módulos del sistema
 
--Web Components
+- Web Components
 
--Base de datos
+- Base de datos
 
--Funcionalidades principales
+- Funcionalidades principales
 
--Posibles mejoras
+- Posibles mejoras
 
--Autora
+- Autora
 
 Descripción general
 
@@ -30,29 +30,31 @@ Descripción general
 La aplicación administra el flujo de producción de una empresa mediante los siguientes procesos:
 
 
--El administrador registra los usuarios que podrán acceder al sistema.
+- El administrador registra los usuarios que podrán acceder al sistema.
 
--Los usuarios registrados inician sesión para ingresar a la aplicación.
+- Los usuarios registrados inician sesión para ingresar a la aplicación.
 
--Se registran materias primas y productos terminados dentro del inventario.
+- Se registran materias primas y productos terminados dentro del inventario.
 
--Cada producto terminado tiene asociada una receta con las materias primas necesarias para su fabricación.
+- Cada producto terminado tiene asociada una receta con las materias primas necesarias para su fabricación.
 
--Al ejecutar un proceso de producción, el sistema verifica el stock disponible, descuenta automáticamente la materia prima utilizada y aumenta el stock del producto terminado
+- Al ejecutar un proceso de producción, el sistema verifica el stock disponible, descuenta automáticamente la materia prima utilizada y aumenta el stock del producto terminado
 
 
 Tecnologías utilizadas
--HTML5
 
--CSS3
+- HTML5
 
--JavaScript
+- CSS3
 
--Firebase Realtime Database
+- JavaScript
 
--Web Components
+- Firebase Realtime Database
 
--LocalStorage
+- Web Components
+
+- LocalStorage
+
 
 
 │
@@ -104,7 +106,7 @@ Tecnologías utilizadas
 
 Instrucciones de ejecución
 
--El proyecto no requiere instalación de librerías adicionales.
+- El proyecto no requiere instalación de librerías adicionales.
 
 
 1. Clonar el repositorio
@@ -179,17 +181,17 @@ Es la primera pantalla del sistema.
 Permite:
 
 
--Registrar nuevos usuarios.
+- Registrar nuevos usuarios.
 
--Validar que todos los campos estén completos.
+- Validar que todos los campos estén completos.
 
--Confirmar la contraseña.
+- Confirmar la contraseña.
 
--Guardar usuarios en Firebase.
+- Guardar usuarios en Firebase.
 
--Editar usuarios existentes.
+- Editar usuarios existentes.
 
--Redireccionar al Login una vez finalizado el registro.
+- Redireccionar al Login una vez finalizado el registro.
 
 
 INICIO DE SESION (login.html)
@@ -201,17 +203,17 @@ Este módulo controla el acceso al sistema.
 Funciones:
 
 
--Validar identificación.
+- Validar identificación.
 
--Validar contraseña.
+- Validar contraseña.
 
--Consultar Firebase.
+- Consultar Firebase.
 
--Permitir únicamente el ingreso de usuarios registrados.
+- Permitir únicamente el ingreso de usuarios registrados.
 
--Mostrar mensajes de éxito o error.
+- Mostrar mensajes de éxito o error.
 
--Redireccionar al inicio del sistema.
+- Redireccionar al inicio del sistema.
 
 
 INICIO (inicio.html)
@@ -223,11 +225,11 @@ Es la pantalla principal del sistema.
 Desde aquí el usuario puede acceder a:
 
 
--Usuarios
+- Usuarios
 
--Inventario
+- Inventario
 
--Producción
+- Producción
 
 
 - mediante el menú lateral.
@@ -242,15 +244,15 @@ Permite administrar los usuarios registrados.
 Funciones:
 
 
--Registrar usuarios.
+- Registrar usuarios.
 
--Consultar usuarios.
+- Consultar usuarios.
 
--Editar información.
+- Editar información.
 
--Eliminar usuarios.
+- Eliminar usuarios.
 
--Buscar usuarios.
+- Buscar usuarios.
 
 
 INVENTARIO
@@ -262,20 +264,20 @@ Administra los productos almacenados.
 Permite:
 
 
--Registrar materias primas.
+- Registrar materias primas.
 
--Registrar productos terminados.
+- Registrar productos terminados.
 
--Editar productos.
+- Editar productos.
 
--Eliminar productos.
+- Eliminar productos.
 
--Aumentar stock.
+- Aumentar stock.
 
--Consultar el inventario.
+- Consultar el inventario.
 
 
--Cuando el producto corresponde a un Producto Terminado, el sistema redirecciona automáticamente al módulo de recetas para registrar su fórmula de fabricación.
+- Cuando el producto corresponde a un Producto Terminado, el sistema redirecciona automáticamente al módulo de recetas para registrar su fórmula de fabricación.
 
 
 RECETAS
@@ -287,9 +289,9 @@ Permite asociar una receta a un producto terminado.
 Cada receta está compuesta por:
 
 
--Materias primas.
+- Materias primas.
 
--Cantidad necesaria de cada materia prima.
+- Cantidad necesaria de cada materia prima.
 
 
 - La receta queda almacenada junto con el producto dentro de Firebase.
@@ -305,20 +307,20 @@ El sistema:
 
 
 
--Muestra únicamente los productos terminados.
+- Muestra únicamente los productos terminados.
 
 
--Solicita la cantidad a fabricar.
+- Solicita la cantidad a fabricar.
 
--Consulta la receta.
+- Consulta la receta.
 
--Verifica el stock disponible.
+- Verifica el stock disponible.
 
--Descuenta automáticamente la materia prima utilizada.
+- Descuenta automáticamente la materia prima utilizada.
 
--Incrementa el stock del producto terminado.
+- Incrementa el stock del producto terminado.
 
--Registra el proceso realizado en Firebase.
+- Registra el proceso realizado en Firebase.
 
 -Muestra un resumen de la producción.
 
@@ -344,22 +346,22 @@ Función
 Incluye los accesos a:
 
 
--Inicio
+- Inicio
 
--Usuarios
+- Usuarios
 
--Inventario
+- Inventario
 
--Producción
+- Producción
 
 
 Ventajas
 
--Evita repetir el mismo código HTML en todas las páginas.
+- Evita repetir el mismo código HTML en todas las páginas.
 
--Facilita el mantenimiento del menú.
+- Facilita el mantenimiento del menú.
 
--Si se modifica una opción del menú, el cambio se refleja automáticamente en todas las vistas.
+- Si se modifica una opción del menú, el cambio se refleja automáticamente en todas las vistas.
 
 
 - Tabla dinámica (tabla.js)
@@ -378,9 +380,9 @@ Es un componente reutilizable que genera automáticamente las tablas utilizadas 
 Dependiendo de la configuración recibida, puede mostrar:
 
 
--Usuarios
+- Usuarios
 
--Productos del inventario
+- Productos del inventario
 
 
 La tabla se construye dinámicamente utilizando los datos obtenidos desde Firebase.
@@ -388,21 +390,21 @@ La tabla se construye dinámicamente utilizando los datos obtenidos desde Fireba
 
 Funcionalidades
 
--Mostrar registros dinámicamente.
+- Mostrar registros dinámicamente.
 
--Crear las columnas según la configuración recibida.
+- Crear las columnas según la configuración recibida.
 
--Buscar registros mediante un filtro.
+- Buscar registros mediante un filtro.
 
--Editar registros.
+- Editar registros.
 
 -Eliminar registros.
 
--Incrementar el stock de productos cuando corresponde.
+- Incrementar el stock de productos cuando corresponde.
 
--Mostrar mensajes cuando no existen datos.
+- Mostrar mensajes cuando no existen datos.
 
--Eventos personalizados utilizados
+- Eventos personalizados utilizados
 
 
 El componente emite eventos para comunicarse con los demás módulos del sistema:
@@ -410,11 +412,11 @@ El componente emite eventos para comunicarse con los demás módulos del sistema
 
 -editar-item
 
--eliminar-item
+- eliminar-item
 
--aumentar-stock
+- aumentar-stock
 
--Cada módulo escucha estos eventos y ejecuta la acción correspondiente.
+- Cada módulo escucha estos eventos y ejecuta la acción correspondiente.
 
 AUTOR
 Stephanie Nathalia Silva Baron - curso JavaScript
