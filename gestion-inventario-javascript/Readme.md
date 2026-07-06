@@ -10,8 +10,6 @@ Tabla de contenido
 
 -Estructura del proyecto
 
--Flujo de funcionamiento
-
 -Instrucciones de ejecución
 
 -Módulos del sistema
@@ -103,51 +101,6 @@ Tecnologías utilizadas
  |      tabla.js
 
 
- index.html
- 
-Registro de usuarios
-
-        │
-        
-        ▼
-        
-
-Se almacena el usuario en Firebase
-
-        │
-
-        ▼
-
-login.html
-
-Inicio de sesión
-
-        │
-        
-        ▼
-
-Validación de credenciales
-
-        │
-       
-        ▼
-
-inicio.html
-
-        │
-
-    ┌──────┼───────────┐
-
- ▼          ▼           ▼
-
-Usuarios Inventario Producción
-
-              │
-              
-              ▼
-           
-          Recetas
-
 
 Instrucciones de ejecución
 
@@ -161,7 +114,7 @@ git clone https://github.com/tu-usuario/stock-flow.git
 2. Abrir el proyecto
 
 
-Se recomienda utilizar Visual Studio Code con la extensión Live Server.
+- Se recomienda utilizar Visual Studio Code con la extensión Live Server.
 
 
 3. Ejecutar
@@ -170,29 +123,29 @@ Se recomienda utilizar Visual Studio Code con la extensión Live Server.
 Abrir inicialmente el archivo:
 
 
-index.html
+- index.html
 
 4. Registrar un usuario
 
 
-La primera pantalla del proyecto corresponde al registro de usuarios.
+- La primera pantalla del proyecto corresponde al registro de usuarios.
 
 
 El usuario deberá ingresar:
 
 
-Identificación
+- Identificación
 
-Nombre
+- Nombre
 
-Cargo
+- Cargo
 
-Contraseña
+- Contraseña
 
-Confirmación de contraseña
+- Confirmación de contraseña
 
 
-Al finalizar el registro, la información se almacena en Firebase y el sistema redirecciona automáticamente al Login.
+- Al finalizar el registro, la información se almacena en Firebase y el sistema redirecciona automáticamente al Login.
 
 
 5. Iniciar sesión
@@ -201,23 +154,23 @@ Al finalizar el registro, la información se almacena en Firebase y el sistema r
 En la pantalla login.html el usuario ingresa:
 
 
-Identificación
+- Identificación
 
-Contraseña
+- Contraseña
 
 
 Si las credenciales son correctas, el sistema redirecciona a:
 
 
-inicio.html
+- inicio.html
 
 
 Desde allí es posible acceder a todos los módulos del sistema mediante el menú lateral.
 
 
-Módulos del sistema
+- Módulos del sistema
 
-Registro de Usuarios (index.html)
+REGISTRO DE USUARIOS (index.html)
 
 
 Es la primera pantalla del sistema.
@@ -239,7 +192,7 @@ Permite:
 -Redireccionar al Login una vez finalizado el registro.
 
 
-Inicio de Sesión (login.html)
+INICIO DE SESION (login.html)
 
 
 Este módulo controla el acceso al sistema.
@@ -261,7 +214,7 @@ Funciones:
 -Redireccionar al inicio del sistema.
 
 
-Inicio (inicio.html)
+INICIO (inicio.html)
 
 
 Es la pantalla principal del sistema.
@@ -277,10 +230,10 @@ Desde aquí el usuario puede acceder a:
 -Producción
 
 
-mediante el menú lateral.
+- mediante el menú lateral.
 
 
-Gestión de Usuarios
+GESTION DE USUARIOS
 
 
 Permite administrar los usuarios registrados.
@@ -300,7 +253,7 @@ Funciones:
 -Buscar usuarios.
 
 
-Inventario
+INVENTARIO
 
 
 Administra los productos almacenados.
@@ -323,3 +276,145 @@ Permite:
 
 
 -Cuando el producto corresponde a un Producto Terminado, el sistema redirecciona automáticamente al módulo de recetas para registrar su fórmula de fabricación.
+
+
+RECETAS
+
+
+Permite asociar una receta a un producto terminado.
+
+
+Cada receta está compuesta por:
+
+
+-Materias primas.
+
+-Cantidad necesaria de cada materia prima.
+
+
+- La receta queda almacenada junto con el producto dentro de Firebase.
+
+
+PRODUCCION
+
+
+Este módulo ejecuta el proceso de fabricación.
+
+
+El sistema:
+
+
+
+-Muestra únicamente los productos terminados.
+
+
+-Solicita la cantidad a fabricar.
+
+-Consulta la receta.
+
+-Verifica el stock disponible.
+
+-Descuenta automáticamente la materia prima utilizada.
+
+-Incrementa el stock del producto terminado.
+
+-Registra el proceso realizado en Firebase.
+
+-Muestra un resumen de la producción.
+
+
+Web Components
+
+
+- Menú lateral (menu.js)
+
+
+Componente personalizado:
+
+
+<menu-lateral></menu-lateral>
+
+
+Función
+
+
+- Se encarga de mostrar el menú de navegación en todas las páginas internas del sistema.
+
+
+Incluye los accesos a:
+
+
+-Inicio
+
+-Usuarios
+
+-Inventario
+
+-Producción
+
+
+Ventajas
+
+-Evita repetir el mismo código HTML en todas las páginas.
+
+-Facilita el mantenimiento del menú.
+
+-Si se modifica una opción del menú, el cambio se refleja automáticamente en todas las vistas.
+
+
+- Tabla dinámica (tabla.js)
+
+Componente personalizado:
+
+<tabla-usuarios></tabla-usuarios>
+
+
+Función
+
+
+Es un componente reutilizable que genera automáticamente las tablas utilizadas en los módulos del sistema.
+
+
+Dependiendo de la configuración recibida, puede mostrar:
+
+
+-Usuarios
+
+-Productos del inventario
+
+
+La tabla se construye dinámicamente utilizando los datos obtenidos desde Firebase.
+
+
+Funcionalidades
+
+-Mostrar registros dinámicamente.
+
+-Crear las columnas según la configuración recibida.
+
+-Buscar registros mediante un filtro.
+
+-Editar registros.
+
+-Eliminar registros.
+
+-Incrementar el stock de productos cuando corresponde.
+
+-Mostrar mensajes cuando no existen datos.
+
+-Eventos personalizados utilizados
+
+
+El componente emite eventos para comunicarse con los demás módulos del sistema:
+
+
+-editar-item
+
+-eliminar-item
+
+-aumentar-stock
+
+-Cada módulo escucha estos eventos y ejecuta la acción correspondiente.
+
+AUTOR
+Stephanie Nathalia Silva Baron - curso JavaScript
