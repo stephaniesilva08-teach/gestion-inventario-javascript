@@ -109,7 +109,7 @@ Instrucciones de ejecución
 
 1. Clonar el repositorio
    
-git clone https://github.com/tu-usuario/stock-flow.git
+git clone https://github.com/stephaniesilva08-teach/gestion-inventario-javascript.git
 
 2. Abrir el proyecto
 
