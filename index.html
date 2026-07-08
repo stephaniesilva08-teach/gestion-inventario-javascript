@@ -4,54 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Usuarios</title>
+    <title>login</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/usuarios.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <div class="contenedor-login">
+    <div class="contenedor-login1">
         <div class="contenedor-candado">
             <img src="images/circulocandado.png" alt="card">
         </div>
         <div class="sesion">
-            <h1>Registrar Usuarios</h1>
+            <h1>Iniciar Sesion</h1>
             <p>Ingrese sus datos para continuar</p>
-            <p id="mensajeexito"></p>
-            <form>
-        </div>
+            <p id="mensaje"></p>
         <br>
+    <form>
+        </div>
         <h3>Numero de Identificacion</h3>
-        <div class="campo">
+        <div class="campo1">
             <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" alt="card"> <input
                 class="Username" type="text" id="identificacion" inputmode="numeric" placeholder="Ingrese su Numero de Identificacion" />
         </div>
         <h3>Contraseña</h3>
-        <div class="campo">
+        <div class="campo1">
             <img src="images/ChatGPT Image 24 jun 2026, 11_47_48.png" alt="card"> <input
-                class="password" type="password" id="password" placeholder="Ingrese su Contraseña" />
+                class="password" type="password" id="password" placeholder="Ingrese su Password" />
         </div>
-        <h3>Confirmar contraseña</h3>
-        <div class="campo">
-           <img src="images/ChatGPT Image 24 jun 2026, 11_47_48.png" alt="card">
-            <input type="password" id="confirmarPassword" placeholder="Confirme su contraseña">
-        </div>
-        <p id="mensajeError"></p>
-        <h3>Nombre Completo</h3>
-        <div class="campo">
-            <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" alt="card"> <input
-                class="Username" type="text" id="username" placeholder="Ingrese su Nombre Completo" />
-        </div>
-        <h3>Cargo</h3>
-        <div class="campo">
-            <img src="images/ChatGPT Image 24 jun 2026, 11_46_18.png" alt="card"> <input
-                class="Username" type="text" id="cargo" placeholder="Ingrese su Cargo" />
-        </div>
-        </form>
         <br>
-        <button id="login">Ingresar</button>
-    </div>
-
+        <button type="button" id="login">Ingresar</button>
+        <br>
+        <a href="registro-usuario.html" class="olvidar-contraseña">No tienes usuario?</a>
+        </form>
 </body>
 
 </html>

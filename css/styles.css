@@ -141,6 +141,7 @@ h3{
 }
 
 .olvidar-contraseña{
+    display: flex;
     color: #00B2FF;
     text-align: center;
     cursor: pointer;

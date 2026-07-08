@@ -39,7 +39,7 @@ if (boton) {
         const mensaje = document.getElementById("mensajeError");
         const mensajeExito = document.getElementById("mensajeexito");
 
-        if (!identificacion || !contraseña) {
+        if (!identificacion || !contraseña || !nombre || !cargo || !confirmacion) {
             mensaje.textContent = "Por favor, llena todos los campos.";
             return;
         }
@@ -81,7 +81,7 @@ if (boton) {
             localStorage.removeItem("idUsuarioEnEdicion");
             localStorage.removeItem("usuarioAEditar");
 
-            setTimeout(() => { window.location.href = "../login.html"; }, 1000);
+            setTimeout(() => { window.location.href = "../registro-usuario.html"; }, 1000);
         })
         .catch(err => {
             console.error("Error: ", err);
@@ -147,7 +147,7 @@ if (tablaComponente) {
     const configuracionUsuarios = {
         titulo: "Gestión de Usuarios",
         textoBoton: "+ Nuevo Usuario",
-        urlBoton: "../index.html"
+        urlBoton: "../registro-usuario.html"
     };
 
     const columnasUsuarios = [
@@ -168,7 +168,7 @@ if (tablaComponente) {
         const usuarioAEditar = event.detail;
         localStorage.setItem("idUsuarioEnEdicion", usuarioAEditar.idFirebase);
         localStorage.setItem("usuarioAEditar", JSON.stringify(usuarioAEditar));
-        window.location.href = "../index.html";
+        window.location.href = "../registro-usuario.html";
     });
 
     cargarUsuarios();
