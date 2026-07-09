@@ -153,7 +153,19 @@ h3{
     margin-top: 5px;
 }
 
+#error{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px; 
+}
+
 #mensajeexito{
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#exito{
     color: green;
     font-size: 14px;
     margin-top: 5px;

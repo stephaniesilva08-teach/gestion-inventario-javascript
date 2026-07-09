@@ -54,3 +54,14 @@ boton.addEventListener("click", (e) => {
         });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    const linkRegistro = document.getElementById("irRegistro");
+
+    if (linkRegistro) {
+        linkRegistro.addEventListener("click", () => {
+            localStorage.setItem("desdeLogin", "true");
+        });
+    }
+
+});

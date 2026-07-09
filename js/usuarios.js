@@ -84,13 +84,16 @@ if (boton) {
             setTimeout(() => {
                 if(idUsuarioEnEdicion){
                     window.location.href = "../usuarios.html";
+                    return;
                 } else {
                     const vienelogin = localStorage.getItem("desdelogin");
                     if (vienelogin){
                         localStorage.removeItem("desdelogin");
-                        window.location.href = "../index.html";
+                        window.location.href = "/index.html";
+                        return;
                     } else {
                         window.location.href = "../usuarios.html"
+                        return;
                     }
                 } }, 1000);
         })
