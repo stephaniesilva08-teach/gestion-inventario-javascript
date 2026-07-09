@@ -98,7 +98,7 @@ async function fabricar(e) {
     document.getElementById("form-prod").reset();
     setTimeout(() => {
         location.href = "inventario.html";
-    }, 5000);
+    }, 1000);
 
 }
 

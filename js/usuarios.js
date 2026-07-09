@@ -31,11 +31,11 @@ if (boton) {
     boton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const identificacion = document.getElementById("identificacion").value;
-        const contraseña = document.getElementById("password").value;
-        const nombre = document.getElementById("username").value;
-        const cargo = document.getElementById("cargo").value;
-        const confirmacion = document.getElementById("confirmarPassword").value;
+        const identificacion = document.getElementById("identificacion").value.trim();
+        const contraseña = document.getElementById("password").value.trim();
+        const nombre = document.getElementById("username").value.trim();
+        const cargo = document.getElementById("cargo").value.trim();
+        const confirmacion = document.getElementById("confirmarPassword").value.trim();
         const mensaje = document.getElementById("mensajeError");
         const mensajeExito = document.getElementById("mensajeexito");
 
@@ -81,7 +81,18 @@ if (boton) {
             localStorage.removeItem("idUsuarioEnEdicion");
             localStorage.removeItem("usuarioAEditar");
 
-            setTimeout(() => { window.location.href = "../registro-usuario.html"; }, 1000);
+            setTimeout(() => {
+                if(idUsuarioEnEdicion){
+                    window.location.href = "../usuarios.html";
+                } else {
+                    const vienelogin = localStorage.getItem("desdelogin");
+                    if (vienelogin){
+                        localStorage.removeItem("desdelogin");
+                        window.location.href = "../index.html";
+                    } else {
+                        window.location.href = "../usuarios.html"
+                    }
+                } }, 1000);
         })
         .catch(err => {
             console.error("Error: ", err);

@@ -53,3 +53,4 @@ boton.addEventListener("click", (e) => {
             mensaje.textContent = "Error no ingresado a la base de datos.";
         });
 });
+
