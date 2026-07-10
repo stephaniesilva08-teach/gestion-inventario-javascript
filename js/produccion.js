@@ -73,6 +73,9 @@ async function fabricar(e) {
     cambios[`productos/${idProducto}/stock`] =
         Number(producto.stock) + cantidad;
 
+    cambios[`productos/${idProducto}/cantidad_producida`] =
+        (producto.cantidad_producida || 0) + cantidad;
+
     cambios[`historial_produccion/proceso_${Date.now()}`] = {
         producto: producto.nombre,
         cantidad: cantidad,
@@ -94,7 +97,7 @@ async function fabricar(e) {
         <b>Materia prima utilizada</b><br>
         ${resumen}
     `;
-
+    
     document.getElementById("form-prod").reset();
     setTimeout(() => {
         location.href = "inventario.html";
@@ -102,4 +105,62 @@ async function fabricar(e) {
 
 }
 
+document.getElementById("btn-reporte").addEventListener("click", generarReporte);
+function generarReporte() {
+    const contenedor = document.getElementById("reporte");
+    const boton = document.getElementById("btn-reporte");
+    if (contenedor.innerHTML !== "") {
+        contenedor.innerHTML = "";
+        boton.textContent = "Ver Reporte"; 
+        return;
+    }
+    if (!productos) {
+        contenedor.innerHTML = "No hay datos cargados";
+        return;
+    }
+
+    const lista = Object.values(productos);
+    const terminados  = lista.filter(prodt => prodt.tipo === "producto_terminado");
+
+    terminados.sort((a,b) =>
+        (b.cantidad_producida || 0) - (a.cantidad_producida || 0)
+    );
+
+    const top5 = terminados.slice(0,5);
+    mostrarReporte(top5);
+    boton.textContent = "Ocultar Reporte";
+}
+
+function mostrarReporte(lista) {
+    const contenedor = document.getElementById("reporte");
+    if(lista.length === 0) {
+        contenedor.innerHTML = "<p>No hay produccion</p>"
+        return;
+    }
+    let titulohtml = "<h3>Top 5 productos mas fabricados</h3>"
+    lista.forEach(prodt => {
+        titulohtml += `
+        <div>
+        <b style="color:#008fd1" >${prodt.nombre}</b><br>
+        <p>
+        Fabricados:
+        <span style="font-weight:bold"> ${prodt.cantidad_producida || 0}<br><br> </span>
+        </p>
+
+        <u style="color:#008fd1" >Materia prima utilizada:</u>
+        <ul>
+        `;
+        if(prodt.receta) {
+            for (let ing in prodt.receta) {
+                titulohtml += `<li>${ing}: ${prodt.receta[ing]} g</li>`;
+            }
+        } else {
+            titulohtml += `<li>Sin receta</li>`;
+        }
+        titulohtml += `</ul></div>`;
+    });
+
+    contenedor.innerHTML = titulohtml;
+
+}
 
